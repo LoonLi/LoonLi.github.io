@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Yanchen Li | Academic Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2d3748;
+            --secondary-color: #4a5568;
+            --accent-color: #e53e3e;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --bg-white: #ffffff;
+            --border-light: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --spacing-unit: 1.5rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--primary-color);
+            background-color: var(--bg-white);
+            font-size: 18px;
+            font-weight: 400;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--accent-color);
+            transition: all 0.2s ease;
+        }
+        
+        a:hover {
+            color: #c53030;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--bg-white);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-unit) 0;
+        }
+        
+        .logo {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--secondary-color);
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 0.02em;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0 3rem;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .hero h2 {
+            font-size: 1.6rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            font-style: italic;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 2px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 0.02em;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn:hover {
+            background-color: #c53030;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+            color: white;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3rem;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--bg-light);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        .about-img {
+            text-align: center;
+        }
+        
+        .about-img img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 4px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+        }
+        
+        .about-img img:hover {
+            transform: scale(1.02);
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            text-align: justify;
+        }
+        
+        /* Publications and Awards */
+        .publications {
+            background-color: var(--bg-white);
+        }
+        
+        .awards {
+            background-color: var(--bg-light);
+        }
+        
+        .publication-list, .awards-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .publication-item, .award-item {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+        
+        .publication-item:last-child, .award-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .publication-item:hover, .award-item:hover {
+            transform: translateX(0.5rem);
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .publication-title, .award-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            line-height: 1.4;
+        }
+        
+        .publication-authors, .award-year {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        
+        .publication-venue {
+            color: var(--accent-color);
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--bg-white);
+        }
+        
+        .contact-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: var(--bg-light);
+            border-radius: 4px;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.2s ease;
+        }
+        
+        .contact-item:hover {
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-2px);
+        }
+        
+        .contact-icon {
+            width: 24px;
+            margin-right: 1rem;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-text h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .contact-text p {
+            color: var(--secondary-color);
+            line-height: 1.5;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--bg-light);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        footer p {
+            font-size: 1.05rem;
+        }
+        
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .about-img {
+                order: -1;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .publication-item:hover, .award-item:hover {
+                transform: none;
+                padding-left: 0;
+                border-left: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Dr. Yanchen Li</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#awards">Awards</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Dr. Yanchen Li</h1>
+                <h2>Postdoctoral Researcher</h2>
+                <p>Advancing research in deep learning with a focus on compression and acceleration techniques that optimize neural network performance and efficiency.</p>
+                <a href="#publications" class="btn">View Publications</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <div class="section-subtitle">Research Background & Experience</div>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="images\me.jpg" alt="Dr. Yanchen Li">
+                </div>
+                <div class="about-text">
+                    <h3>Research Focus</h3>
+                    <p>I'm a postdoctoral researcher specializing in deep learning. My research focuses on addressing challenging problems in accelerating DNN models with low-precision quantization and pruning techniques.</p>
+                    <p>Currently, I'm working at RIKEN Center for Computer Science, where I am a member of the Advanced AI Device Development Unit leaded by Prof. Kentaro Sano to develop novel AI accelerators that push the boundaries of computational efficiency.</p>
+                    <p>I received my Ph.D. in Computer Science from the University of Osaka in 2025, where I worked under the supervision of Prof. Fumihiko Ino on accelerating DNN models on GPUs and developing innovative optimization strategies.</p>
+                    <a href="#contact" class="btn">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications" class="publications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Publications</h2>
+                <div class="section-subtitle">Recent Research Contributions</div>
+            </div>
+            <div class="publication-list">
+                <div class="publication-item">
+                    <div class="publication-title">A Theoretical and Empirical Exploration of TileTrans for Effective Tile Pruning</div>
+                    <div class="publication-authors"><strong>Yanchen Li</strong>, Fumihiko Ino</div>
+                    <div class="publication-venue">Knowledge-Based Systems, 2024/8/8</div>
+                </div>
+                
+                <div class="publication-item">
+                    <div class="publication-title">Enhancing Bayesian Optimization with NLML-Based Transfer Learning</div>
+                    <div class="publication-authors"><strong>Yanchen Li</strong>, Taku Tsuzuki</div>
+                    <div class="publication-venue">2024 IEEE 20th International Conference on e-Science (e-Science), 2024/9/16</div>
+                </div>
+                
+                <div class="publication-item">
+                    <div class="publication-title">Parallel Heuristic Methods to Accelerate Best Equivocation Code Generation</div>
+                    <div class="publication-authors"><strong>Yanchen Li</strong>, Ke Zhang, Fumihiko Ino</div>
+                    <div class="publication-venue">IEEE Access, 2023/5/3</div>
+                </div>
+
+                <div class="publication-item">
+                    <div class="publication-title">A One-Shot Reparameterization Method for Reducing the Loss of Tile Pruning on DNNs</div>
+                    <div class="publication-authors"><strong>Yanchen Li</strong>, Qingzhong Ai, Fumihiko Ino</div>
+                    <div class="publication-venue">International Joint Conference on Neural Networks (IJCNN), 2022/7/18</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="awards" class="awards">
+        <div class="container">
+            <div class="section-title">
+                <h2>Awards & Honors</h2>
+                <div class="section-subtitle">Recognition & Achievements</div>
+            </div>
+            <div class="awards-list">
+                <div class="award-item">
+                    <div class="award-title">Excellent Student Presentation Award</div>
+                    <div class="award-year">Summer United Workshops on Parallel, Distributed and Cooperative Processing, 2024 (SWoPP 2024)</div>
+                </div>
+                
+                <div class="award-item">
+                    <div class="award-title">Humanware Innovation Program</div>
+                    <div class="award-year">Osaka University, 2019-2025</div>
+                </div>
+
+                <div class="award-item">
+                    <div class="award-title">Information AI Fellowship</div>
+                    <div class="award-year">Osaka University, 2022-2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact</h2>
+                <div class="section-subtitle">Get In Touch</div>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>yanchen.li@riken.jp</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Office Location</h4>
+                            <p>〒650-0047 Hyogo, Kobe, Chuo Ward, Minatojima Minamimachi, 6 Chome-3-5, 210</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Dr. Yanchen Li. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Subtle fade-in animation for content
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -30px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.publication-item, .award-item, .contact-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(15px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
